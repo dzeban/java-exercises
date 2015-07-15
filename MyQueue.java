@@ -29,7 +29,8 @@ public class MyQueue {
 	/**
 	 * Inner class representing queue node.
 	 *
-	 * It's not static to show how crazy is syntax.
+	 * It really should be static, but it's not static 
+	 * to show how crazy is syntax - see main()
 	 */
 	public class Node {
 		private String string;
@@ -42,6 +43,21 @@ public class MyQueue {
 		String value()
 		{
 			return string;
+		}
+	}
+
+	public class QueueIterator {
+		private MyQueue q;
+		public QueueIterator()
+		{
+			// Save reference of the outer class 
+			// this iterator belongs to
+			q = MyQueue.this;			
+		}
+
+		public Node next()
+		{
+			return q.remove();
 		}
 	}
 
@@ -61,9 +77,11 @@ public class MyQueue {
 		System.out.println(q.remove().value());
 		q.add(q.new Node("3"));
 		q.add(q.new Node("4"));
-		System.out.println(q.remove().value());
 		q.add(q.new Node("5"));
-		System.out.println(q.remove().value());
-		System.out.println(q.remove().value());
+
+		QueueIterator iter = q.new QueueIterator();
+		System.out.println(iter.next().value());
+		System.out.println(iter.next().value());
+		System.out.println(iter.next().value());
 	}
 }
