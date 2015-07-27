@@ -50,5 +50,33 @@ class Point {
 		Point p = new Point(3, 4).translate(1, 3).scale(0.5);
 		System.out.println(p.getX());
 		System.out.println(p.getY());
+
+		LabeledPoint lp = new LabeledPoint("Onotole", 7, 8);
+		System.out.println(lp.getLabel());
+		System.out.println(lp.getX());
+		System.out.println(lp.getY());
+	}
+}
+
+class LabeledPoint extends Point
+{
+	private String label;
+
+	public LabeledPoint()
+	{
+		// By default will be invoked no-args constructor
+		this.label = "";
+	}
+
+	public LabeledPoint(String label, double x, double y)
+	{
+		// By default will be invoked no-args constructor
+		super(x, y);
+		this.label = label;
+	}
+
+	public String getLabel()
+	{
+		return label;
 	}
 }
